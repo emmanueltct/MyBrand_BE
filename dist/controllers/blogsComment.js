@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteComment = exports.singleComment = exports.readComment = exports.createComment = void 0;
 const blogComment_1 = __importDefault(require("../models/blogComment"));
 const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    /* console.log(req.body.user)*/
+    console.log(req.user);
     try {
         const newComment = new blogComment_1.default({
             blogId: req.params.id,
