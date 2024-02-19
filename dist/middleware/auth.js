@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const passport_local_1 = require("passport-local");
 const JWTstrategy = require('passport-jwt').Strategy;
@@ -25,11 +26,13 @@ passport_1.default.use('signup', new passport_local_1.Strategy({
     passReqToCallback: true
 }, (req, email, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const salt = yield bcrypt_1.default.genSalt(10);
+        const hashPassword = yield bcrypt_1.default.hash(password, salt);
         let names = req.body.names;
         let user = yield new userAuth_1.default({
             names,
             email,
-            password
+            password: hashPassword
         });
         yield user.save();
         return done(null, user);
@@ -48,13 +51,10 @@ passport_1.default.use('login', new passport_local_1.Strategy({
         if (!user) {
             return done(null, false, { message: 'User not found' });
         }
-        /*
-        const validate = await user.isValidPassword(password);
-
+        const validate = yield bcrypt_1.default.compare(password, user.password);
         if (!validate) {
-          return done(null, false, { message: 'Wrong Password' });
+            return done(null, false, { message: 'Wrong Password' });
         }
-*/
         return done(null, user, { message: 'Logged in Successfully' });
     }
     catch (error) {

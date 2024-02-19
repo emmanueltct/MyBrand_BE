@@ -1,7 +1,8 @@
 import blogLike from "../models/blogLike"
 
 import { Request,Response } from "express"
-import { IUser } from "../models/userAuth";
+import { IUser } from "../utils/userType";
+
 
 const createNewLike=async (req:Request, res:Response) => {
     if(req.user){

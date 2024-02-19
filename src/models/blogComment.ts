@@ -1,7 +1,8 @@
 
+import { ObjectId } from 'mongodb'
 import mongoose from 'mongoose'
 const blogComment=new mongoose.Schema({
-    blogId:String,
+    blogId:ObjectId,
     user:{
         names:String,
         email:String,

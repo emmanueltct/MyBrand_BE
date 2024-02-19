@@ -6,8 +6,10 @@ const JWTstrategy = require('passport-jwt').Strategy;
 
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
-import Users,{IUser}from "../models/userAuth";
+import Users from "../models/userAuth";
+
 import { Request ,Response} from "express";
+
 import { TOKENRESPONSE } from "../utils/tokenType";
 
 dotenv.config();
@@ -23,11 +25,15 @@ passport.use(
       },
       async (req,email, password, done:any) => {
         try {
+
+          const salt=await bcrypt.genSalt(10);
+          const hashPassword=await bcrypt.hash(password,salt)
+
           let names=req.body.names;
           let user = await new Users({ 
             names,
             email,
-            password 
+            password:hashPassword
           });
 
         await user.save()
@@ -55,13 +61,13 @@ passport.use(
         if (!user) {
           return done(null, false, { message: 'User not found' });
         }
-        /*
-        const validate = await user.isValidPassword(password);
-
+        
+        const validate = await bcrypt.compare(password,user.password);
+      
         if (!validate) {
           return done(null, false, { message: 'Wrong Password' });
         }
-*/
+
         return done(null, user, { message: 'Logged in Successfully' });
       } catch (error) {
         return done(error);

@@ -1,7 +1,9 @@
+import { ObjectId } from 'mongodb'
 import mongoose from 'mongoose'
+
 const blogLike=new mongoose.Schema({
-    blogId:String,
-    userId:String,
+    blogId:ObjectId,
+    userId:ObjectId,
     blogLike:Boolean,
     },
 {
