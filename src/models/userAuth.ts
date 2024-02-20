@@ -1,14 +1,7 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt"
-import { ObjectId } from "mongodb";
 
-export interface IUser extends Document {
-    _id:ObjectId
-    names:string;
-    email:string;
-    password:string;
-    userType:string
-}
+import { IUser } from "../utils/userType";
+
 
 
 const userSchema=new mongoose.Schema<IUser>({
@@ -18,6 +11,7 @@ const userSchema=new mongoose.Schema<IUser>({
     },
     email:{
         type:String,
+        unique:true,
         required:true
 
     },

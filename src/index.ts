@@ -7,7 +7,7 @@
    
   //require('./middleware/auth');
     import userPassport from "./middleware/auth";
-    import secureRoute from "./routers/secure-routes";
+    import authRoute from "./routers/authRoutes";
 
 
     dotenv.config();
@@ -26,7 +26,7 @@
 
             app.use("/api", blogsRoutes)
             
-           app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
+           app.use('/users/auth', authRoute );
 
            console.log('its work')
             // Handle errors.re

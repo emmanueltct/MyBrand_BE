@@ -4,7 +4,7 @@ import blogComment from '../models/blogComment'
 
 
 const createComment=async(req:Request,res:Response)=>{
-    console.log(req.user)
+    /* console.log(req.body.user)*/
     try{
    
     const newComment=new blogComment({
