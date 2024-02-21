@@ -1,46 +1,47 @@
 import {Request,Response} from "express"
-import Blog from "../models/blog"
 import blogComment from '../models/blogComment'
 
 
 const createComment=async(req:Request,res:Response)=>{
     /* console.log(req.body.user)*/
     try{
+        let user=req.user
+        console.log(req.user)
+        if(user){
+            
+            const newComment=new blogComment({
+                blogId:req.params.id,
+                user:user,
+                message:req.body.message
+                })
+        
+                const comment= await newComment.save()
+                res.status(200).json({message:"Your comment to this blog is successful sent"})
+        }else{
+            res.status(400).json({error:"we are validating you before you place a comment and something went wrong"})   
+        }
+       
    
-    const newComment=new blogComment({
-        blogId:req.params.id,
-        user:req.body.user,
-        })
-
-        const comment= await newComment.save()
-        res.send(comment)
-   
-  
     }catch{
-        res.status(404)
-        res.send({error:"some thing went wrong with your comment"})
+        res.status(500).json({error:"some thing went wrong with your comment"})
     }
 }
 
 const readComment=async(req:Request,res:Response)=>{
-    console.log(req.params.id)
     try {
         const post = await blogComment.find({blogId: req.params.id })
-        res.send(post)
+        res.status(200).json({data:post})
     } catch {
-        res.status(404)
-        res.send({ error: "Post doesn't exist!" })
+        res.status(400).json({ error: "comments doesn't exist!" })
     }
 }
 
 const singleComment=async(req:Request,res:Response)=>{
-    console.log( req.params.comment_id)
     try {
         const comment=await blogComment.findOne({ _id: req.params.comment_id })
-        res.send(comment)
+        res.status(200).json({data:comment})
     } catch {
-        res.status(404)
-        res.send({ error: "Post doesn't exist!" })
+        res.status(400).json({ error: "Comment doesn't exist!" })
     } 
 }
 
@@ -50,8 +51,7 @@ const deleteComment=async(req:Request,res:Response)=>{
         await blogComment.deleteOne({ _id: req.params.comment_id })
         res.status(204).send()
     } catch {
-        res.status(404)
-        res.send({ error: "Post doesn't exist!" })
+        res.status(400).json({ error: "Comment doesn't exist!" })
     }
 }
 

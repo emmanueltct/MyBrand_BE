@@ -1,3 +1,6 @@
+import { DateSchema } from "joi"
+import { Schema } from "mongoose"
+
 export interface NewBlog{
     title:string,
     image:string,
@@ -18,6 +21,17 @@ export interface Client{
 }
 
 export interface Comment{
-    user:User & {message:string}
+ user:User&{_id:Schema.Types.ObjectId}
+ blogId:Schema.Types.ObjectId
+  message:string 
+}
 
+export interface ILike{
+    [x: string]: any
+    _id:Schema.Types.ObjectId
+    userId:Schema.Types.ObjectId
+    blogId:Schema.Types.ObjectId
+    blogLike:boolean 
+    createdAt:DateSchema
+    updatedAt:DateSchema 
 }

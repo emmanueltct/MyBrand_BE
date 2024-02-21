@@ -1,7 +1,8 @@
 import { ObjectId } from 'mongodb'
 import mongoose from 'mongoose'
+import { ILike } from '../utils/blogType'
 
-const blogLike=new mongoose.Schema({
+const blogLike=new mongoose.Schema<ILike>({
     blogId:ObjectId,
     userId:ObjectId,
     blogLike:Boolean,
@@ -11,4 +12,4 @@ const blogLike=new mongoose.Schema({
 }
 )
 
-export default mongoose.model("userLike",blogLike)
+export default mongoose.model<ILike>("userLike",blogLike)

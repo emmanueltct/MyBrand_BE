@@ -8,7 +8,7 @@ export const userSignup=async (req:Request, res:Response, next:NextFunction) => 
   if(req.user){
     const user=req.user as IUser
     const body = { _id: user._id, email: user.email,names:user.names };
-    token= jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '15m'} );
+    token= jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '1h'} );
  
   res.status(200).json({
     message: 'Signup successful',
