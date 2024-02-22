@@ -4,8 +4,6 @@
     import mongoose  from "mongoose" ;
     import blogsRoutes from './routers/blogsRoute';
    
-   
-  //require('./middleware/auth');
     import userPassport from "./middleware/auth.passport";
     import authRoute from "./routers/authRoutes";
   
@@ -27,7 +25,7 @@
             app.use('/users/auth', authRoute );
           
             app.use('*', (req:Request, res:Response) => {
-                res.status(404).json({error:'Page Not Found'});
+                return res.status(404).json({error:'Page Not Found'});
               });
         })
         .catch((err:Error)=>{

@@ -10,8 +10,8 @@ export const isValidBlog=async(req:any,res:any,next:NextFunction)=>{
             const errors=valid.error;
             const err=errors?.details[0].message
             const inputError=err.replace(/['"]+/g, '')
-            res.status(403).json({ error:inputError});
-            //console.log(errors?.details[0].message)
+           return res.status(403).json({ error:inputError});
+            
         }else{
             next()
             
@@ -24,17 +24,17 @@ export const isExistBlog=async(req:Request,res:Response,next:NextFunction)=>{
         if(isExistBlog) {
             next()
         } else{
-            res.status(404).json({error:"the blog you are looking is not exist please check and try again"})
+           return res.status(404).json({error:"the blog you are looking is not exist please check and try again"})
         }
     } catch (error:any) {
-        res.status(401).json({error:"Something went wrong with your blog link please try again"})
+       return res.status(400).json({error:"Invalid data detected, you are passing a wrong id on blog. please try again!"})
     } 
 } 
 
 export const isExistTitle=async(req:Request,res:Response,next:NextFunction)=>{
     const titleBlog=await Blog.findOne({title:req.body.title})
     if(titleBlog) {
-        res.status(409).json({
+        return res.status(409).json({
             error:"This blog title is already exist please update it or change title ",
             })
     }
@@ -52,7 +52,7 @@ export const isHavingComment=async(req:Request,res:Response,next:NextFunction)=>
         } 
         next()
     } catch (error:any) {
-        res.status(401).json({error:"Something went wrong to remove comments of this blog"})
+       return res.status(500).json({error:"Internal server error"})
     }
     
 } 
@@ -65,7 +65,7 @@ export const isHavingLikes=async(req:Request,res:Response,next:NextFunction)=>{
         } 
         next()
     } catch (error:any) {
-        res.status(401).json({error:"Something went wrong to remove likes of this blog"})
+       return res.status(500).json({error:"internal server error"})
     } 
 }
 

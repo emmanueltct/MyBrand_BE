@@ -18,7 +18,7 @@ const createNewLike=async (req:Request, res:Response) => {
         const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
         const TotalDislike=await blogLike.countDocuments({blogId:req.params.id,blogLike:false})
 
-        res.status(200).json({
+        return res.status(200).json({
             message:"you are already reacted to this page and the status of your reaction is changed to like or dislike accordingly",
             data:{likes:TotalLike,
                   dislike:TotalDislike
@@ -34,18 +34,15 @@ const createNewLike=async (req:Request, res:Response) => {
        const newLike= await likes.save()
        const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
 
-        res.status(200).json({
+       return res.status(200).json({
                             message:'new like is added',
                             data:TotalLike
                             })
     }
-    }else{
-        res.status(400).json({
-            message:"something went wrong in user verification"
-        })
+    }
     }
 
-}
+
 
    
 

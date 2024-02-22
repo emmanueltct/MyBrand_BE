@@ -13,8 +13,8 @@ export const isValidQuerry=(req:Request,res:Response,next:NextFunction)=>{
         const errors=valid.error;
         const err=errors?.details[0].message
         const inputError=err.replace(/['"]+/g, '')
-        res.status(403).json({error: inputError});
-        //console.log(errors?.details[0].message)
+       return res.status(403).json({error: inputError});
+       
     }else{
         next()
     }

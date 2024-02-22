@@ -48,25 +48,13 @@ export const isAdmin=(req:any,res:Response,next:NextFunction)=>{
 }
 
 
-
-async (req:Request,res:Response,next:NextFunction)=>{
-    const existUser=req.user as IUser;
-    if (existUser) {
-        
-    
-    }
-
-}
-
-
 export const isValidUser=async(req:Request,res:Response,next:NextFunction)=>{
     const valid=authValidation(req.body)
     if(valid.error){
         const errors=valid.error;
         const err=errors?.details[0].message
         const inputError=err.replace(/['"]+/g, '')
-        res.status(400)
-        res.send({ inputError});
+        return res.status(403).json({ inputError});
     }else{
         next()
     }

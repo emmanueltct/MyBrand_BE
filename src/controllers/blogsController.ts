@@ -14,21 +14,21 @@ const createNewBlog=async (req:any, res:any) => {
             await blog.save()
    
        const message = "Blog is successfully created"
-       res.status(200).json({message:message,data:blog})       
+       return res.status(200).json({message:message,data:blog})       
 }
 
 
 const getAllBlogs=async (req:Request, res:Response) => {
     const posts = await Blog.find()
-    res.status(200).json({data:posts})
+    return res.status(200).json({data:posts})
 }
 
 const singleBlog=async (req:Request, res:Response) => {
     try {
         const post = await Blog.findOne({ _id: req.params.id })
-        res.status(200).json({data:post})
+        return res.status(200).json({data:post})
     } catch {
-        res.status(400).json({ error: "Blog you are looking doesn't exist!" })
+        return res.status(404).json({ error: "Blog you are looking doesn't exist!" })
     }
 }
 
@@ -49,13 +49,12 @@ const updateBlog=async (req:Request, res:Response) => {
                 post.content = req.body.content
             }
             await post.save()
-             res.status(200).json({message:"blog is successfully updated",
+            return res.status(200).json({message:"blog is successfully updated",
                                    data:post 
                                     })
         } 
     } catch {
-        res.status(400)
-        res.send({ error: "blog post doesn't exist!" })
+        return res.status(404).json({ error: "blog post doesn't exist!" })
     }
     
 }
@@ -64,11 +63,10 @@ const deleteBlog=async (req:Request, res:Response) => {
     try {
 
         await Blog.deleteOne({ _id: req.params.id })
-        res.status(204).json({"message":"blog content is deleted"})
-       // res.status(204)
+        return res.status(204).json({"message":"blog content is deleted"})
+       
     } catch {
-        res.status(400)
-        res.send({ error: "Blog post doesn't exist!" })
+        return res.status(404).json({ error: "Blog post doesn't exist!" })
     }
 }
 

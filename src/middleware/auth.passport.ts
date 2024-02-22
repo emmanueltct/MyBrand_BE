@@ -87,8 +87,8 @@ passport.use(
       try {
         return done(null, token.user);
       } catch (error) {
-        const error1="unttttt"
-        done(null,{message:"invalid"});
+       
+        done(error);
       }
     }
   )
