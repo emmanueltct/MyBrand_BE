@@ -12,7 +12,7 @@ export const userLogin=(req:Request,res:Response,next:NextFunction)=>{
               try {
                 if (err || !user) {
                   const error = new Error('An error occurred.');
-                  //console.log(info)
+                  res.status(404).json(info)
                   return next(info);
                 }
       
@@ -21,13 +21,12 @@ export const userLogin=(req:Request,res:Response,next:NextFunction)=>{
                   { session: false },
                   async (error) => {
                     if (error) {
-                     
                       return next(error)};
       
                     const body = { _id: user._id, email: user.email,names:user.names };
                     const token = jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '1h'} );
                     
-                    return res.json({ token:"Bearer "+token,body });
+                    return res.json({ token:"Bearer "+ token, body });
                   }
                 );
               } catch (error) {

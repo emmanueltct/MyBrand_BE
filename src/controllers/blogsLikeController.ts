@@ -49,8 +49,7 @@ const createNewLike=async (req:Request, res:Response) => {
 const getLikeStatus=async(req:Request, res:Response)=>{
     const TotalLike=await blogLike.countDocuments({blogId:req.params.id,blogLike:true})
     const TotalDislike=await blogLike.countDocuments({blogId:req.params.id,blogLike:false}) 
-    res.status(200)
-    res.send({
+    res.status(200).json({
         Total_like:TotalLike,
         dislike:TotalDislike
     })
