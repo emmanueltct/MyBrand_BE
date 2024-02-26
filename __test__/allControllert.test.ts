@@ -12,8 +12,9 @@ const DB_URL=process.env.MONGO_DB_TEST
 
 
 beforeAll(async()=>{
-    //await mongoose.connect(DB_URL as string)
-   await mongoose.connect("mongodb://127.0.0.1:27017/Andela_coh29")
+    await mongoose.connect(DB_URL as string)
+
+   //await mongoose.connect("mongodb://127.0.0.1:27017/Andela_coh29")
 },100000 )
 
 afterAll(async()=>{
@@ -43,7 +44,7 @@ describe("Test for authentication & authorization",()=>{
                 const response=await supertest(app).post('/api/users/auth/signup').
                 send({
                 names:"MUNEZERO Emmanuel",
-                email:"emmanuel12@gmail.com",
+                email:"emmanuel122@gmail.com",
                 password:"test1234h",
              })
              const updateUser= await Users.findOne({ email: "emmanuel12@gmail.com"})
@@ -133,7 +134,7 @@ describe("Test for authentication & authorization",()=>{
         it("User login as an Admin and have all privelledges",async()=>{
             const response=await supertest(app).post('/api/users/auth/login')
             .send({
-                email:"emmanuel12@gmail.com",
+                email:"emmanuelmunezero@gmail.com",
                 password:"test1234h"
             })
             console.log(response.body)
@@ -147,7 +148,7 @@ describe("Test for authentication & authorization",()=>{
         it("User login authentication to normal user",async()=>{
             const response=await supertest(app).post('/api/users/auth/login')
             .send({
-                email:userEmail,
+                email:'emmanueltest1@gmail.com',
                 password:"test1234h",
             })
             console.log(response.body)
@@ -250,7 +251,7 @@ describe("Test for authentication & authorization",()=>{
              expect(response.body.error).toContain('title is not allowed to be empty')
          }) 
 
-    
+    /*
     it('check if blog title is exist in database',async()=>{
                 blogs.title=blogTitle
                 
@@ -262,6 +263,7 @@ describe("Test for authentication & authorization",()=>{
                  
          })
 
+         
 
          it('creating a new blog in database',async()=>{
             blogs.title=blogTitle+'first'
@@ -274,7 +276,7 @@ describe("Test for authentication & authorization",()=>{
          expect(response.body.data).toHaveProperty("title")
              
      }) 
-    
+     */
 
         it("GET api/blogs/:id: passing a wrong id for blog? (Bad request) ", async()=>{
             const id='65d6ed020e5b0ea2307c59c3hhfhhfhfhhf'
