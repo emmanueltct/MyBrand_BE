@@ -4,12 +4,15 @@ import dotenv from 'dotenv'
 import { Strategy as localStrategy } from "passport-local";
 import Users from "../models/userAuth";
 import { Request ,Response} from "express";
+
 import { TOKENRESPONSE } from "../utils/tokenType";
 
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 dotenv.config();
+
+
 passport.use(
     'signup',
     new localStrategy(
@@ -65,9 +68,9 @@ passport.use(
         }
 
         return done(null, user, { message: 'Logged in Successfully' });
-      } catch (error) {
-    
-        return done(error);
+      } catch (error:any) {
+      
+        return done(null, false, { message: 'internal server error'});
       }
     }
   )

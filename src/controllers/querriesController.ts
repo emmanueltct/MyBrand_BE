@@ -4,7 +4,7 @@ import Clients from '../models/querries'
 
 const createQuerries=async(req:Request,res:Response)=>{
     try {
-        console.log(req.body.client.location)
+      
         const clientQuery=new Clients({
             client_info:req.body.client,
             client_budget:req.body.budget,

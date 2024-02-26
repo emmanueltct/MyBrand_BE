@@ -9,7 +9,7 @@ export const querriesValidation=(querries:Client)=>{
     })
     
     const validationRules=Joi.object<Client>({
-        client_info:userValidationSChema,
+        client_info:userValidationSChema.required(),
         client_budget:Joi.string().required(),
         client_message:Joi.string().min(20).max(300).required(),
        

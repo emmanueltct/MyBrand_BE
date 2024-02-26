@@ -14,7 +14,6 @@ export const isValidBlog=async(req:any,res:any,next:NextFunction)=>{
             
         }else{
             next()
-            
         }   
 }
 
@@ -32,6 +31,7 @@ export const isExistBlog=async(req:Request,res:Response,next:NextFunction)=>{
 } 
 
 export const isExistTitle=async(req:Request,res:Response,next:NextFunction)=>{
+  
     const titleBlog=await Blog.findOne({title:req.body.title})
     if(titleBlog) {
         return res.status(409).json({

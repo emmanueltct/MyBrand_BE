@@ -6,9 +6,10 @@ import passport from 'passport';
 
 
 export const isEmailExist=async (req:Request,res:Response,next:NextFunction)=>{
+  
     const existUser=await Users.findOne({email:req.body.email });
     if (existUser) {
-      res.status(409).json({ error: 'the user email is exist' });
+      res.status(409).json({error: 'the user email is exist' });
     }else{
         next()
     }
@@ -17,6 +18,7 @@ export const isEmailExist=async (req:Request,res:Response,next:NextFunction)=>{
 
 export const isAuthenticated=(req:any,res:Response,next:NextFunction)=>{
         passport.authenticate('jwt', { session: false, }, async (error:any,token:IUser) => {
+            
             if (error || !token) {
                return res.status(401).json({ message: 'Unauthenticated user detected. Please login to continue' });
             } 

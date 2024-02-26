@@ -36,12 +36,13 @@ import { isValidComment } from '../middleware/comment.middlewares';
 const BlogRouter=Router();
 const upload=multerImage
 
-
 // all routes for managing blogs
 
-BlogRouter.post("/blogs",isAdmin, upload.single('image'), isValidBlog, isExistTitle,createNewBlog)
+BlogRouter.post("/blogs",isAdmin, upload.single('image'),isValidBlog, isExistTitle, createNewBlog)
+
 
 BlogRouter.get("/blogs", getAllBlogs)
+
 BlogRouter.patch("/blogs/:id", isAdmin, isExistBlog, updateBlog)
 BlogRouter.get("/blogs/:id",isExistBlog,singleBlog)
 BlogRouter.delete("/blogs/:id",isAdmin, isExistBlog,isHavingComment,isHavingLikes, deleteBlog)
