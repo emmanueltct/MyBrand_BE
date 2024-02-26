@@ -25,7 +25,7 @@ export const userLogin=(req:Request,res:Response,next:NextFunction)=>{
                       return next(error)};
       
                     const body = { _id: user._id, email: user.email,names:user.names };
-                    const token = jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '15m'} );
+                    const token = jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '1h'} );
                     
                     return res.json({ token:"Bearer "+token,body });
                   }

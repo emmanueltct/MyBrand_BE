@@ -9,7 +9,11 @@
     <li><b>TypeScript</b></li>
     <li><b>Passport js and jonswebtoken for user authentication</b></li>
 </ul>
-
+### package management tool
+    <ol><li>npm</l></ol>
+### image upload 
+    <ol><li>cloudinary image</l></ol>
+   
 ### how to test my project
 siince the project backend is implemented with various API end points , to test the project I use Postman as an application for testing API
 

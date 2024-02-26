@@ -2,19 +2,14 @@ import passport from "passport";
 import bcrypt from "bcrypt"
 import dotenv from 'dotenv'
 import { Strategy as localStrategy } from "passport-local";
-const JWTstrategy = require('passport-jwt').Strategy;
-
-const ExtractJWT = require('passport-jwt').ExtractJwt;
-
 import Users from "../models/userAuth";
-
 import { Request ,Response} from "express";
-
 import { TOKENRESPONSE } from "../utils/tokenType";
 
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
+
 dotenv.config();
-
-
 passport.use(
     'signup',
     new localStrategy(
@@ -26,6 +21,7 @@ passport.use(
       async (req,email, password, done:any) => {
         try {
 
+    
           const salt=await bcrypt.genSalt(10);
           const hashPassword=await bcrypt.hash(password,salt)
 
@@ -70,6 +66,7 @@ passport.use(
 
         return done(null, user, { message: 'Logged in Successfully' });
       } catch (error) {
+    
         return done(error);
       }
     }
@@ -88,9 +85,9 @@ passport.use(
     jwtOptions,
     async (token:TOKENRESPONSE,done:any) => {
       try {
-        console.log(process.env.JWT_SECRET)
         return done(null, token.user);
       } catch (error) {
+       
         done(error);
       }
     }
@@ -98,5 +95,6 @@ passport.use(
 );
 
 const userPassport=passport;
-
 export default userPassport
+
+
