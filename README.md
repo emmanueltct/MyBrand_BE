@@ -1,4 +1,4 @@
-![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg?branch=ft-be-mybrand)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml)
+![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg?branch=ft-be-mybrand)][(https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml)]
 
 
 # MyBrand_BE
