@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml)
+
 # MyBrand_BE
  <b>MyBrand_BE</b> is a backend part of <a href="https://github.com/emmanueltct/MYBRAND_MUNEZERO"> <b>MYBRAND_MUNEZERO</b></a> which is apersonnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
 
