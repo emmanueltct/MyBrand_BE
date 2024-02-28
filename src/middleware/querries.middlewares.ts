@@ -4,9 +4,11 @@ import {querriesValidation} from '../validation/querries.validation';
 
 export const isValidQuerry=(req:Request,res:Response,next:NextFunction)=>{
     const data={
-        client_info:req.body.client,
-        client_budget:req.body.budget,
-        client_message:req.body.message,
+        names:req.body.names,
+        email:req.body.email,
+        location:req.body.location,                                  
+        budget:req.body.budget,
+        message:req.body.message,
     }
     const valid =querriesValidation(data)
     if(valid.error){
