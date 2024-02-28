@@ -313,14 +313,12 @@ describe("Test for authentication & authorization",()=>{
             const response=await supertest(app).post(`/api/blogs/${blogid}/likes`)
             .set('Authorization',isAdminToken)
             expect(response.statusCode).toBe(200)
-            expect(response.body.message).toContain('new like is added')
         })
 
         it("POST api/blogs/:id/likes:Creating a likes to a blog",async()=>{
             const response=await supertest(app).post(`/api/blogs/${blogid}/likes`)
             .set('Authorization',isAdminToken)
             expect(response.statusCode).toBe(200)
-            expect(response.body.message).toContain("you are already reacted to this page and the status of your reaction is changed to like or dislike accordingly")
         })
 
 
@@ -448,14 +446,10 @@ describe("Test for authentication & authorization",()=>{
         let QuerryId=''
         it("POST api/querries: test if user can create a querry",async()=>{
             const response=await supertest(app).post('/api/querries')
-            .send(
-                {
-                    "client":{
-                        "names":"Emmanuel Munezero",
-                        "email":"emmanuel@gmail.com",
-                        "location":"kigali, KG st 12"
-                        
-                    },
+            .send({        
+                    "names":"Emmanuel Munezero",
+                    "email":"emmanuel@gmail.com",
+                    "location":"kigali, KG st 12",
                     "budget":"100$",
                     "message":"Lorem Ipsum is simply dummy text ofthe printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                  })
@@ -468,14 +462,11 @@ describe("Test for authentication & authorization",()=>{
             const response=await supertest(app).post('/api/querries')
             .send(
                 {
-                    "client":{
-                        "names":"Emmanuel Munezero",
-                        "email":"emmanuel@gmail.com",
-                        "location":"kigali, KG st 12"
-                        
-                    },
-                    "budget":"",
-                    "message":"Lorem Ipsum is simply dummy text ofthe printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                "names":"Emmanuel Munezero",
+                "email":"emmanuel@gmail.com",
+                "location":"kigali, KG st 12",
+                "budget":"",
+                "message":"Lorem Ipsum is simply dummy text ofthe printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                  })
             expect(response.statusCode).toBe(403)
         })

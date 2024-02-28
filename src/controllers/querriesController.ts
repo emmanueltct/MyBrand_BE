@@ -5,8 +5,14 @@ import Clients from '../models/querries'
 const createQuerries=async(req:Request,res:Response)=>{
     try {
       
+       const client_info={
+            names:req.body.names,
+            email:req.body.email,
+            location:req.body.location
+        }
+
         const clientQuery=new Clients({
-            client_info:req.body.client,
+            client_info:client_info,
             client_budget:req.body.budget,
             client_message:req.body.message 
         })
@@ -38,7 +44,6 @@ const deleteQuerries=async(req:Request,res:Response)=>{
             return res.status(404).json({error:"Client Query is not exist"})
         }
         
-      
     } catch {
         return res.status(404).json({ error: "Querry doesn't exist!" })
     }

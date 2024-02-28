@@ -14,9 +14,11 @@ export interface User{
 }
 
 export interface Client{
-    client_info:User &{location:string}
-    client_budget:string
-    client_message:string
+    names:string,
+    email:string,
+    location:string
+    budget:string
+    message:string
 
 }
 
