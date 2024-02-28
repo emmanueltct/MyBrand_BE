@@ -1,6 +1,3 @@
-[![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml)
-![Coveralls](https://img.shields.io/coverallsCoverage/github/emmanueltct/MyBrand_BE)
-
 
 
 # MyBrand_BE
