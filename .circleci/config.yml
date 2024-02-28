@@ -1,29 +1,27 @@
 version: 2.1
+#orbs
 orbs:
-  coveralls: coveralls/coveralls@2.2.1
+  node: circleci/node@4.1.0
+ #coveralls: coveralls/coveralls@2.2.1
+
+workflows:
+  build:
+    jobs:
+      - build
+
 jobs:
-  build_and_test: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
+  build:
+    docker:
+      - image: cimg/node:16.13.2
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn test
-          name: Run tests
-      - run:
-          command: yarn build
-          name: Build app
-      - persist_to_workspace:
-          root: ~/blogs_backend
-          paths: .
-workflows:
-  build_test_deploy: # this can be any name you choose
-    jobs:
-      - build_and_test
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
-          filters:
-            branches:
-              only: main # only deploy when on main
+          name: Set up Node.js
+          command: |
+            echo "##[group] Installing Node.js"
+            curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            echo "##[endgroup]"
+      - run: npm ci
+      - run: npm test
+     # - coveralls/upload
