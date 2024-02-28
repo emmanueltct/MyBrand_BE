@@ -9,7 +9,7 @@ const createNewLike=async (req:Request, res:Response) => {
         const user=req.user as IUser;
         const userID=user._id
         let uLikes=true
-     const userlikes:ILike | null =await  blogLike.findOne({blogId:req.params.id,
+     const userlikes =await  blogLike.findOne({blogId:req.params.id,
         userId:userID}) 
 
     if(userlikes){
@@ -25,7 +25,7 @@ const createNewLike=async (req:Request, res:Response) => {
                   }
          })
     }else{
-        const likes:ILike= new blogLike({
+        const likes= new blogLike({
             blogId:req.params.id,
             userId:userID,
             blogLike:uLikes,

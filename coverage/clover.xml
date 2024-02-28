@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709147323448" clover="3.2.0">
-  <project timestamp="1709147323449" name="All files">
+<coverage generated="1709148833541" clover="3.2.0">
+  <project timestamp="1709148833541" name="All files">
     <metrics statements="375" coveredstatements="335" conditionals="70" coveredconditionals="50" methods="71" coveredmethods="64" elements="516" coveredelements="449" complexity="0" loc="375" ncloc="375" packages="8" files="25" classes="25"/>
     <package name="src">
       <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -465,8 +465,8 @@
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
       </file>
       <file name="user.validation.ts" path="C:\Users\emman\OneDrive\Desktop\AndelaCohort29\MyBrand_BE\src\validation\user.validation.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
