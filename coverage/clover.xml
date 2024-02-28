@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708958579053" clover="3.2.0">
-  <project timestamp="1708958579053" name="All files">
-    <metrics statements="378" coveredstatements="338" conditionals="70" coveredconditionals="50" methods="72" coveredmethods="65" elements="520" coveredelements="453" complexity="0" loc="378" ncloc="378" packages="8" files="26" classes="26"/>
+<coverage generated="1709118967096" clover="3.2.0">
+  <project timestamp="1709118967096" name="All files">
+    <metrics statements="370" coveredstatements="330" conditionals="70" coveredconditionals="50" methods="71" coveredmethods="64" elements="511" coveredelements="444" complexity="0" loc="370" ncloc="370" packages="8" files="25" classes="25"/>
     <package name="src">
-      <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="index.ts" path="C:\Users\emman\OneDrive\Desktop\AndelaCohort29\MyBrand_BE\src\index.ts">
-        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-      </file>
-      <file name="swagger.ts" path="C:\Users\emman\OneDrive\Desktop\AndelaCohort29\MyBrand_BE\src\swagger.ts">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.controllers">
