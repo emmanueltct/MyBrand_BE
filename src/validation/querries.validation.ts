@@ -3,7 +3,6 @@ import {Client, User}from "../utils/blogType"
 
 export const querriesValidation=(querries:Client)=>{
   
-    
     const validationRules=Joi.object<Client>({
         names:Joi.string().min(3).required(),
         email:Joi.string().email().required(),

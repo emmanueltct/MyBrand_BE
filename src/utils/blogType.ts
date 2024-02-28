@@ -29,7 +29,6 @@ export interface Comment{
 }
 
 export interface ILike{
-    [x: string]: any
     _id:Schema.Types.ObjectId
     userId:Schema.Types.ObjectId
     blogId:Schema.Types.ObjectId
