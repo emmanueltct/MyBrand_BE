@@ -1,4 +1,4 @@
-
+[![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml) [![Coverage Status](https://coveralls.io/repos/github/emmanueltct/MyBrand_BE/badge.svg?branch=main)](https://coveralls.io/github/emmanueltct/MyBrand_BE?branch=main)
 
 # MyBrand_BE
  <b>MyBrand_BE</b> is a backend part of <a href="https://github.com/emmanueltct/MYBRAND_MUNEZERO"> <b>MYBRAND_MUNEZERO</b></a> which is apersonnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
