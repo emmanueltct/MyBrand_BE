@@ -7,8 +7,7 @@ import multerImage  from "../utils/multer";
     let maxSize = 1024 * 1024;
     let  fileSize=0
   if(req.file){
-    console.log("file",req.file.mimetype)
-
+    
     if (req.file.mimetype === "image/png" || req.file.mimetype ==="image/jpg" || req.file.mimetype ==="image/jpeg") {
 
         if(req.file.size>maxSize){
@@ -23,7 +22,7 @@ import multerImage  from "../utils/multer";
     }
 
   }else{
-    return res.status(400).send("the blog image is required");
+    return res.status(400).json({error:"the blog image is required"});
          
   }
       
