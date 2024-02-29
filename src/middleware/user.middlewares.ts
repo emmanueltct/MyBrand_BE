@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Users from '../models/userAuth'
-import {authValidation} from '../validation/user.validation';
+import {authValidation, loginValidation} from '../validation/user.validation';
 import { IUser } from '../utils/userType';
 import passport from 'passport';
 
@@ -52,6 +52,18 @@ export const isAdmin=(req:any,res:Response,next:NextFunction)=>{
 
 export const isValidUser=async(req:Request,res:Response,next:NextFunction)=>{
     const valid=authValidation(req.body)
+    if(valid.error){
+        const errors=valid.error;
+        const err=errors?.details[0].message
+        const inputError=err.replace(/['"]+/g, '')
+        return res.status(403).json({ inputError});
+    }else{
+        next()
+    }
+}
+
+export const lofinFormValidation=async(req:Request,res:Response,next:NextFunction)=>{
+    const valid=loginValidation(req.body)
     if(valid.error){
         const errors=valid.error;
         const err=errors?.details[0].message

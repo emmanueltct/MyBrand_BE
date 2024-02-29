@@ -1,16 +1,17 @@
 import cloudinary from "../utils/cloudinary";
 import Blog from "../models/blog"
 import { Request,Response } from "express"
-
+import multerImage from "../utils/multer";
+import { isValidBlog, isExistTitle } from "../middleware/blog.middleware";
 const createNewBlog=async (req:any, res:any) => {
 
-    const formData = new FormData();
-     console.log(formData)
-
+  
         let result:string=''
         if(req.file){
             const uploadedImage=await cloudinary.uploader.upload(req.file.path)
            result=uploadedImage.secure_url
+        }else{
+            return res.status(403).json({error:"blog image is required"})
         }
            
               const blog = new Blog({
@@ -23,8 +24,9 @@ const createNewBlog=async (req:any, res:any) => {
    
        const message = "Blog is successfully created"
        return res.status(200).json({message:message,data:blog})       
-}
 
+
+}
 
 const getAllBlogs=async (req:Request, res:Response) => {
     const posts = await Blog.find()
@@ -41,29 +43,47 @@ const singleBlog=async (req:Request, res:Response) => {
 }
 
 
-const updateBlog=async (req:Request, res:Response) => {
+const updateBlog=async (req:any, res:Response) => {
     try {
-        const post= await Blog.findOne({ _id: req.params.id })
       
+       
+
+        const post= await Blog.findOne({ _id: req.params.id })
+        //console.log()
         if(post){
-            if (req.body.title) {
+           
+            let validError=''
+
+            if (req.body.title ) {
+                if(req.body.title.length<20 || req.body.title.length>50){
+                    validError="Blog title must be atleast between 20 and 50 character length "+req.body.title.length+ " is provided"
+                }
                 post.title = req.body.title 
             }
-            if (req.body.blogIntro) {
-                post.title = req.body.blogIntro
-            }
-            if (req.body.image) {
-                    post.image = req.body.image
-            }
 
-            if (req.body.content) {
+            if (req.body.blogIntro) {
+                if(req.body.blogIntro.length<50 || req.body.blogIntro.length>100){
+                    validError="Blog introduction must be atleast between 50 and 100 character length "+req.body.blogIntro.length+ " is provided"
+                }
+                post.blogIntro = req.body.blogIntro
+            }
+            if (req.body.content ) {
+                if(req.body.content.length<100){
+                    validError="Blog content must be atleast between more than 100 character length and "+req.body.content.length+ " is provided"
+                }
                 post.content = req.body.content
             }
+
+            if(validError.length>4){
+                return res.status(403).json({"error":validError})
+            }else{
             await post.save()
-            return res.status(200).json({message:"blog is successfully updated",
-                                   data:post 
-                                })
-        } 
+            return res.status(200).json({message:"blog is successfully updated",       
+                    data:post 
+                })
+             }  
+            }                
+         
     } catch {
         return res.status(500).json({ error: "internal server error" })
     }

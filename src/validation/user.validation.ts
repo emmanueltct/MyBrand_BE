@@ -10,3 +10,12 @@ export const authValidation=(Users:User&{password:string})=>{
 
     return userValidationSChema.validate(Users)
 }
+
+export const loginValidation=(Users:User&{password:string})=>{
+    const userValidationSChema=Joi.object<{email:String,password:string}>({
+        email:Joi.string().email().required(),
+        password:Joi.string().min(5).required()
+    })
+
+    return userValidationSChema.validate(Users)
+}

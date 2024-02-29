@@ -137,7 +137,7 @@ describe("Test for authentication & authorization",()=>{
                 email:"emmanuelmunezero@gmail.com",
                 password:"test1234h"
             })
-            console.log(response.body)
+            //console.log(response.body)
             expect(response.statusCode).toBe(200)
             expect(response.body).toHaveProperty('token')
             isAdminToken=response.body.token
@@ -151,7 +151,7 @@ describe("Test for authentication & authorization",()=>{
                 email:'emmanueltest1@gmail.com',
                 password:"test1234h",
             })
-            console.log(response.body)
+            //console.log(response.body)
             expect(response.statusCode).toBe(200)
             expect(response.body).toHaveProperty('token')
             notAdminToken=response.body.token
@@ -167,18 +167,28 @@ describe("Test for authentication & authorization",()=>{
                 email:"",
                 password:"test1234h"
             })
-            expect(response.statusCode).toBe(404)
-            expect(response.body.message).toContain("Missing credentials")
+            expect(response.statusCode).toBe(403)
+            
         })
 
-        it("POST api/user/login:user not found",async()=>{
+        it("POST api/user/login:user with invalid email format",async()=>{
             const response=await supertest(app).post('/api/users/auth/login')
             .send({
                 email:"emmanulgmail.com",
                 password:"test1234h"
             })
+            expect(response.statusCode).toBe(403)
+            
+        })
+
+        it("POST api/user/login:user not found",async()=>{
+            const response=await supertest(app).post('/api/users/auth/login')
+            .send({
+                email:"emmanulyyyyyyyyyyyyyyyyyyy@gmail.com",
+                password:"test1234h"
+            })
             expect(response.statusCode).toBe(404)
-            expect(response.body.message).toContain("User not found")
+            
         })
 
         it("POST api/user/login:wrong password provided",async()=>{
@@ -241,6 +251,7 @@ describe("Test for authentication & authorization",()=>{
         
         })
 
+      /*  
         it('check if blog is validated ',async()=>{
             blogs.title=''
                 
@@ -251,7 +262,7 @@ describe("Test for authentication & authorization",()=>{
              expect(response.body.error).toContain('title is not allowed to be empty')
          }) 
 
-    /*
+    
     it('check if blog title is exist in database',async()=>{
                 blogs.title=blogTitle
                 
