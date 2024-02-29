@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.84% </span>
+                <span class="strong">46.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/13</span>
+                <span class='fraction'>7/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.84% </span>
+                <span class="strong">46.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/13</span>
+                <span class='fraction'>7/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,11 +94,7 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,19 +102,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -135,35 +127,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import multer, { Multer } from "multer"
 &nbsp;
-&nbsp;
+import { Express, Request, Response, NextFunction } from 'express';
 &nbsp;
 let maxSize = 1024 * 1024;
 &nbsp;
- const storage=multer.diskStorage({
-    destination: <span class="fstat-no" title="function not covered" >function (r</span>eq, file, cb) {
-<span class="cstat-no" title="statement not covered" >      cb(null, './blog_profile') /</span>/Destination folder
-    },
-    filename: <span class="fstat-no" title="function not covered" >function (r</span>eq, file, cb) {
-<span class="cstat-no" title="statement not covered" >      cb(null, Date.now()+''+file.originalname) </span>
-    },
-    
-  }) 
+ const storage=multer.diskStorage({}) 
  
-&nbsp;
-&nbsp;
 const filterFile=<span class="fstat-no" title="function not covered" >(r</span>eq:any, file:Express.Multer.File, cb:any) =&gt; {
     
 <span class="cstat-no" title="statement not covered" >  if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {</span>
+    const fileSize = <span class="cstat-no" title="statement not covered" >parseInt(req.headers['content-length']);</span>
+  
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if(fileSize&gt;maxSize){</span>
+<span class="cstat-no" title="statement not covered" >      req.fileValidationError = "the blog thumbnail  must be not greater than 1MB";</span>
+<span class="cstat-no" title="statement not covered" >      return  cb(req.fileValidationError,false);</span>
+    }
 <span class="cstat-no" title="statement not covered" >    cb(null, true);</span>
   } else {
 <span class="cstat-no" title="statement not covered" >    req.fileValidationError = "Only .png, .jpg and .jpeg format allowed!";</span>
 <span class="cstat-no" title="statement not covered" >   return  cb(req.fileValidationError,false);</span>
 &nbsp;
-    ///return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+     // return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
   }
 }
 &nbsp;
-const upload = multer({storage:storage  ,fileFilter: filterFile ,limits: { fileSize: maxSize }});
+const upload = multer({storage:storage });
 &nbsp;
 const multerImage=upload
 export default multerImage
@@ -175,7 +163,7 @@ export default multerImage
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-28T19:33:53.433Z
+                at 2024-02-29T09:51:15.716Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
