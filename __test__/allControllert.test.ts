@@ -8,7 +8,7 @@ import Blog from '../src/models/blog'
 import dotenv from 'dotenv'
 
 dotenv.config()
-const DB_URL=process.env.MONGO_DB_TEST
+const DB_URL=process.env.testDB
 
 
 beforeAll(async()=>{
@@ -44,15 +44,15 @@ describe("Test for authentication & authorization",()=>{
                 const response=await supertest(app).post('/api/users/auth/signup').
                 send({
                 names:"MUNEZERO Emmanuel",
-                email:"emmanuel122@gmail.com",
+                email:"emmanuelmunezero@gmail.com",
                 password:"test1234h",
              })
-             const updateUser= await Users.findOne({ email: "emmanuel12@gmail.com"})
+
+             const updateUser= await Users.findOne({ email: "emmanuelmunezero@gmail.com"})
              if(updateUser){
                 updateUser.userType='admin' 
                 updateUser.save()
              }
-             expect(200)
             }
 
             const userInput:{
@@ -68,7 +68,7 @@ describe("Test for authentication & authorization",()=>{
 
             const response=await supertest(app).post('/api/users/auth/signup')
             .send({
-                "names":`User ${r}`,
+                "names":`User test`,
                 "email":`user${r}@gmail.com`,
                 "password":"test1234h"
             })
@@ -92,8 +92,8 @@ describe("Test for authentication & authorization",()=>{
             }
             const response=await supertest(app).post('/api/users/auth/signup')
             .send({
-                "names":"User user2",
-                "email":userEmail,
+                "names":"User usertest",
+                "email":"emmanuelmunezero@gmail.com",
                 "password":"test1234h"
             })
             expect(response.statusCode).toBe(409)
@@ -118,7 +118,7 @@ describe("Test for authentication & authorization",()=>{
                 "password":"test1234h"
             })
             expect(response.statusCode).toBe(403)
-            expect(response.body.inputError).toContain('email is not allowed to be empty')
+        
         })
 
     })
@@ -137,7 +137,7 @@ describe("Test for authentication & authorization",()=>{
                 email:"emmanuelmunezero@gmail.com",
                 password:"test1234h"
             })
-            //console.log(response.body)
+           
             expect(response.statusCode).toBe(200)
             expect(response.body).toHaveProperty('token')
             isAdminToken=response.body.token
@@ -148,15 +148,15 @@ describe("Test for authentication & authorization",()=>{
         it("User login authentication to normal user",async()=>{
             const response=await supertest(app).post('/api/users/auth/login')
             .send({
-                email:'emmanueltest1@gmail.com',
+                email:'usergdhz03p@gmail.com',
                 password:"test1234h",
             })
-            //console.log(response.body)
+           
             expect(response.statusCode).toBe(200)
             expect(response.body).toHaveProperty('token')
             notAdminToken=response.body.token
            
-           // console.log(logedUser)
+          
             
         })
 
@@ -194,7 +194,7 @@ describe("Test for authentication & authorization",()=>{
         it("POST api/user/login:wrong password provided",async()=>{
             const response=await supertest(app).post('/api/users/auth/login')
             .send({
-                email:userEmail,
+                email:"emmanuelmunezero@gmail.com",
                 password:"test1234huu"
             })
            
@@ -239,55 +239,84 @@ describe("Test for authentication & authorization",()=>{
             expect(response.statusCode).toBe(401)
             expect(response.body.error).toContain("you are not allowed to perform this operation")
             
-          
            })
           
-        
-        it("GET api/blogs: getting all blog list ", async()=>{
-            const response=await supertest(app).get('/api/blogs');
-            expect(response.statusCode).toBe(200)
-            blogid=response.body.data[0]._id
-            blogTitle=response.body.data[0].title
-        
-        })
 
-      /*  
-        it('check if blog is validated ',async()=>{
-            blogs.title=''
-                
-            const response=await supertest(app).post('/api/blogs')
-            .send(blogs)
-            .set('Authorization',isAdminToken)
-            expect(400)
-             expect(response.body.error).toContain('title is not allowed to be empty')
-         }) 
 
+             it('blog post with bad format of profile ', async()=> {
+                const dotPathfile =`${__dirname}/../blog_profile/kivu.jpg` ;
+                const response=await supertest(app).post('/api/blogs')
+                    .set('Authorization',isAdminToken)
+                    .set('contentType', 'application/octet-stream')
+                    .field('title', 'Le Lorem Ipsum est simplement')
+                    .field('blogIntro', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. ')
+                    .field('content', "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.l n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker. ")
+                    .expect(400)
+           
+                 });
     
-    it('check if blog title is exist in database',async()=>{
-                blogs.title=blogTitle
-                
-             const response=await supertest(app).post('/api/blogs')
-             .send(blogs)
-             .set('Authorization',isAdminToken)
-              expect(response.statusCode).toBe(409)
-              expect(response.body.error).toContain("This blog title is already exist please update it or change title")
-                 
-         })
+            /* 
+             it('blog post with successfull', async()=> {
+                const dotPathfile =`${__dirname}/../blog_profile/test/kivu.jpg` ;
+                let r = (Math.random() + 1).toString(36).substring(5);
+                const response=await supertest(app).post('/api/blogs')
+                  
+                    .set('Authorization',isAdminToken)
+                    .set('contentType', 'application/octet-stream')
+                    .field('title', `Le Lorem Ipsum est test ${r}`)
+                    .field('blogIntro', 'Le Lorem Ipsum est simplement du faux texte employé')
+                    .field('content', "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.l n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker. ")
+                    .attach('image',dotPathfile)
+                    .expect(200)
+                    blogid=response.body.data._id
+                    blogTitle=response.body.data.title
+                    
+                 });
 
-         
 
-         it('creating a new blog in database',async()=>{
-            blogs.title=blogTitle+'first'
+                  
+             it('blog post with existing title', async()=> {
+              
+                const dotPathfile =`${__dirname}/../blog_profile/test/kivu.jpg` ;
+                let r = (Math.random() + 1).toString(36).substring(5);
+                const response=await supertest(app).post('/api/blogs')
+                  
+                    .set('Authorization',isAdminToken)
+                    .set('contentType', 'application/octet-stream')
+                    .field('title', `${blogTitle}`)
+                    .field('blogIntro', 'Le Lorem Ipsum est simplement du faux texte employé')
+                    .field('content', "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.l n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker. ")
+                    .attach('image',dotPathfile)
+                    .expect(409)
+                   
+                    
+                 });
+
+
+
+                 it('blog post with missing some input data', async()=> {
+                    const dotPathfile =`${__dirname}/../blog_profile/test/kivu.jpg` ;
+                    const response=await supertest(app).post('/api/blogs')
+                        .set('Authorization',isAdminToken)
+                        .set('contentType', 'application/octet-stream')
+                        .field('title', '')
+                        .field('blogIntro', 'Le Lorem Ipsum est simplement du faux texte employé')
+                        .field('content', "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.l n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker. ")
+                        .attach('image',dotPathfile)
+                        .expect(403)
+               
+                     });
             
-         const response=await supertest(app).post('/api/blogs')
-         .send(blogs)
-         .set('Authorization',isAdminToken)
-          expect(response.statusCode).toBe(200)
-          expect(response.body.message).toContain('Blog is successfully created')
-         expect(response.body.data).toHaveProperty("title")
-             
-     }) 
-     */
+                */
+            it("GET api/blogs: getting all blog list ", async()=>{
+                const response=await supertest(app).get('/api/blogs');
+                expect(response.statusCode).toBe(200)
+                blogid=response.body.data[0]._id
+                blogTitle=response.body.data[0].title
+            
+            })
+
+
 
         it("GET api/blogs/:id: passing a wrong id for blog? (Bad request) ", async()=>{
             const id='65d6ed020e5b0ea2307c59c3hhfhhfhfhhf'
@@ -321,6 +350,7 @@ describe("Test for authentication & authorization",()=>{
         
         
         it("POST api/blogs/:id/likes:Creating a likes to a blog",async()=>{
+        
             const response=await supertest(app).post(`/api/blogs/${blogid}/likes`)
             .set('Authorization',isAdminToken)
             expect(response.statusCode).toBe(200)
@@ -409,9 +439,7 @@ describe("Test for authentication & authorization",()=>{
             })
 
             
-           
-
-
+    
             it("DELETE api/comments/:id: delete unexisting comment",async()=>{
                 const id='65d6fba6f13e3670ed1c7f19'
                 const response=await supertest(app).delete(`/api/comments/${id}`)

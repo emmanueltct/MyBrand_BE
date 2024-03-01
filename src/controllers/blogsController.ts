@@ -45,15 +45,18 @@ const singleBlog=async (req:Request, res:Response) => {
 
 const updateBlog=async (req:any, res:Response) => {
     try {
-      
-       
 
         const post= await Blog.findOne({ _id: req.params.id })
         //console.log()
         if(post){
            
-            let validError=''
+            if(req.file){
+                const uploadedImage=await cloudinary.uploader.upload(req.file.path)
+               post.image=uploadedImage.secure_url
+            }
 
+            let validError=''
+            
             if (req.body.title ) {
                 if(req.body.title.length<20 || req.body.title.length>50){
                     validError="Blog title must be atleast between 20 and 50 character length "+req.body.title.length+ " is provided"

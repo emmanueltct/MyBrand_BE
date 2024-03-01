@@ -2,3 +2,4 @@ node_modules
 dist
 blog_profile
 .env
+swagger1.json

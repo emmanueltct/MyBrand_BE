@@ -44,7 +44,7 @@ BlogRouter.post("/blogs",isAdmin, upload.single('image'),isValidImage,isValidBlo
 
 BlogRouter.get("/blogs", getAllBlogs)
 
-BlogRouter.patch("/blogs/:id",isExistBlog, updateBlog)           
+BlogRouter.patch("/blogs/:id",isAdmin,upload.single('image'),isValidImageUpdate,isExistBlog, updateBlog)           
 
 BlogRouter.get("/blogs/:id",isExistBlog,singleBlog)
 BlogRouter.delete("/blogs/:id",isAdmin, isExistBlog,isHavingComment,isHavingLikes, deleteBlog)
