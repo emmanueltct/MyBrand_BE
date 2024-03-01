@@ -5,7 +5,8 @@
  ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
 # MyBrand_BE
- <h2>MyBrand_BE</h2> is a backend part of <a href="https://github.com/emmanueltct/MYBRAND_MUNEZERO"> <b>MYBRAND_MUNEZERO</b></a> which is apersonnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
+
+ <b>MyBrand_BE</b> is a backend part of <a href="https://github.com/emmanueltct/MYBRAND_MUNEZERO"> <b>MYBRAND_MUNEZERO</b></a> which is apersonnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
 
 ### Technology used in MyBrand-BE
 
@@ -25,6 +26,9 @@
 siince the project backend is implemented with various API end points , to test the project I use Postman as an application for testing API
 
 ### All Api endpoints for my project
+ 
+ <b>test link:</> https://mybrand-be-3-qrqs.onrender.com/docs/
+
 <b>1. end points for blogs</b>
 <ul>
     <li><b>GET /api/blogs</b> : view all blogs (public)</li>
@@ -45,6 +49,7 @@ siince the project backend is implemented with various API end points , to test 
 </ul>
 
 <b>3. end points for liking a blog</b>
+   
 <ul>
     <li><b>POST /api/blogs:id/likes</b> :  for iking or dislike a single blog (authenticated users)</li>
    
@@ -59,6 +64,14 @@ siince the project backend is implemented with various API end points , to test 
 </ul>
 
 
+<h4>How to test project locally</h4>
+    1. clone this repo to the following link 
+
+        https://github.com/emmanueltct/MyBrand_BE.git
+
+    2. run npm install 
+
+    3. run npm dev
 
 
 
