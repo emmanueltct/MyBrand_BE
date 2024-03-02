@@ -5,10 +5,9 @@
 
 
 # MyBrand_BE
-<b>MyBrand_BE</b> is a backend part of <a href="https://github.com/emmanueltct/MYBRAND_MUNEZERO"> <b>MYBRAND_MUNEZERO</b></a> which is apersonnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
+<b>MyBrand_BE</b> is a backend part of <a href="https://emmanueltct.github.io/MYBRAND_MUNEZERO/index.html"> <b>MYBRAND_MUNEZERO</b></a> which is a personnel website + blog help the owner to market himself and interacting with the users through blog comments and contact page
 
 ### Technology used in MyBrand-BE
-
 <ul>
     <li><b>Node js</b></li>
     <li><b>Express js</b></li>
@@ -22,12 +21,10 @@
     <ol><li>cloudinary image</l></ol>
    
 ### how to test my project
-siince the project backend is implemented with various API end points , to test the project I use Postman as an application for testing API
+Since the project backend is implemented with various API endpoints , to test the project I use Postman as an application for testing API
 
 ### All Api endpoints for my project
- 
  <b>test link:</> https://mybrand-be-3-qrqs.onrender.com/docs/
-
 <b>1. end points for blogs</b>
 <ul>
     <li><b>GET /api/blogs</b> : view all blogs (public)</li>
@@ -35,20 +32,15 @@ siince the project backend is implemented with various API end points , to test 
     <li><b>GET /api/blogs/:id </b>: view a single blog (public)</li>
     <li><b>PACTH /api/blogs/:id </b>: to update blog (authorized access only)</li>
     <li><b>DELETE /api/blogs/:id </b> : to delete a single blog (authorized access only)</li>
-
 </ul>
-
 <b>2. end points for blog comments</b>
 <ul>
     <li><b>GET /api/blogs</b> : view all blogs (public)</li>
     <li><b>POST /api/blogs:id/comments</b> : create new comment for a single blog (authenticated users)</li>
     <li><b>GET /api/blogs/:id/comments </b> : view all comment for single blog (public)</li>
     <li><b>DELETE /api/comments/:id </b> : to delete a single comment (authorized access only)</li>
-
 </ul>
-
-<b>3. end points for liking a blog</b>
-   
+<b>3. end points for liking a blog </b> 
 <ul>
     <li><b>POST /api/blogs:id/likes</b> :  for iking or dislike a single blog (authenticated users)</li>
 </ul>
@@ -61,11 +53,8 @@ siince the project backend is implemented with various API end points , to test 
 
 <h4>How to test project locally</h4>
     1. clone this repo to the following link 
-
         https://github.com/emmanueltct/MyBrand_BE.git
-
     2. run npm install 
-
     3. run npm dev
 
 
