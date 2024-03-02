@@ -255,7 +255,7 @@ describe("Test for authentication & authorization",()=>{
            
                  });
     
-            /* 
+          
              it('blog post with successfull', async()=> {
                 const dotPathfile =`${__dirname}/../blog_profile/test/kivu.jpg` ;
                 let r = (Math.random() + 1).toString(36).substring(5);
@@ -307,7 +307,7 @@ describe("Test for authentication & authorization",()=>{
                
                      });
             
-                */
+            
             it("GET api/blogs: getting all blog list ", async()=>{
                 const response=await supertest(app).get('/api/blogs');
                 expect(response.statusCode).toBe(200)

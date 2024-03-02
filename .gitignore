@@ -1,5 +1,4 @@
 node_modules
 dist
-blog_profile
 .env
-swagger1.json
+./src/swagger1.json
