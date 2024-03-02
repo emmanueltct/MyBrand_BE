@@ -21,10 +21,12 @@
     <ol><li>cloudinary image</l></ol>
    
 ### how to test my project
-Since the project backend is implemented with various API endpoints , to test the project I use Postman as an application for testing API
+Since the project backend is implemented with various API endpoints, to test the project I use Postman as an application for testing API
 
 ### All Api endpoints for my project
- <b>test link:</> https://mybrand-be-3-qrqs.onrender.com/docs/
+ <b>test link:</b>
+ https://mybrand-be-3-qrqs.onrender.com/docs/
+ <br/>
 <b>1. end points for blogs</b>
 <ul>
     <li><b>GET /api/blogs</b> : view all blogs (public)</li>
