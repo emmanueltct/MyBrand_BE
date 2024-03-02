@@ -50,16 +50,17 @@ Since the project backend is implemented with various API endpoints, to test the
 <ul>
     <li><b>GET /api/querries:</b> : view all blogs (authorised access only)</li>
     <li><b>POST /api/querries</b> : for client to send a querry (public)</li>
-    <li><b>DELETE /api/querries/:id</b>: to delete a single client querry(authorized access only)</li>
+    <li><b>DELETE /api/querries/:id</b>: to delete a single client query (authorized access only)</li>
 </ul>
 
 <h4>How to test project locally</h4><br/>
+<ul>
+  <li>  clone this repo to the following link 
+        https://github.com/emmanueltct/MyBrand_BE.git </li>
+  <li>run npm install</li>
+  <li>run npm dev</li>
+</ul>
 
-    1. clone this repo to the following link 
-        https://github.com/emmanueltct/MyBrand_BE.git
-        <br/>
-    2. run npm install <br/>
-    3. run npm dev
 
 
 
