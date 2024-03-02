@@ -1,8 +1,8 @@
-[![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml) [![Coverage Status](https://coveralls.io/repos/github/emmanueltct/MyBrand_BE/badge.svg?branch=main)](https://coveralls.io/github/emmanueltct/MyBrand_BE?branch=main)
-
-
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![CircleCI](https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&logo=circleci&logoColor=white)
- ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+ ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)   [![Node.js CI](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml/badge.svg)](https://github.com/emmanueltct/MyBrand_BE/actions/workflows/testing.yml) [![Coverage Status](https://coveralls.io/repos/github/emmanueltct/MyBrand_BE/badge.svg?branch=ft-be-mybrand)](https://coveralls.io/github/emmanueltct/MyBrand_BE?branch=ft-be-mybrand)
+
+
+
 
 # MyBrand_BE
 
