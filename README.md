@@ -53,10 +53,12 @@ Since the project backend is implemented with various API endpoints, to test the
     <li><b>DELETE /api/querries/:id</b>: to delete a single client querry(authorized access only)</li>
 </ul>
 
-<h4>How to test project locally</h4>
+<h4>How to test project locally</h4><br/>
+
     1. clone this repo to the following link 
         https://github.com/emmanueltct/MyBrand_BE.git
-    2. run npm install 
+        <br/>
+    2. run npm install <br/>
     3. run npm dev
 
 
