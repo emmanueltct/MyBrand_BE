@@ -19,6 +19,10 @@ const querries=new mongoose.Schema({
         type:String,
         required:true
     },
+    client_subject:{
+        type:String,
+        required:true
+    },
     client_message:{
         type:String,
         required:true

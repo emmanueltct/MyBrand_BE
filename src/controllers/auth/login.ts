@@ -26,7 +26,7 @@ export const userLogin=(req:Request,res:Response,next:NextFunction)=>{
                     const body = { _id: user._id, email: user.email,names:user.names };
                     const token = jwt.sign({user:body}, process.env.JWT_SECRET as string,{expiresIn: '1h'} );
                     
-                    return res.json({ token:"Bearer "+ token, body });
+                    return res.json({message:"You are successfull loged in", token:"Bearer "+ token});
                   }
                 );
               } catch (error) {
@@ -35,3 +35,6 @@ export const userLogin=(req:Request,res:Response,next:NextFunction)=>{
             }
           )(req, res, next);
         }
+
+
+      

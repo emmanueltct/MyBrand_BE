@@ -16,8 +16,9 @@ export interface User{
 export interface Client{
     names:string,
     email:string,
-    location:string
-    budget:string
+    location:string,
+    budget:string,
+    subject:string,
     message:string
 
 }
