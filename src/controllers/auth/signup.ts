@@ -12,8 +12,8 @@ export const userSignup=async (req:Request, res:Response, next:NextFunction) => 
  
  return res.status(200).json({
     message: 'Signup successful',
-    token:`Bearer  ${token}`,
-    user:req.user
+    token:`Bearer  ${token}`
+   
   });
   }else{
    return res.status(400).json({

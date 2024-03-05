@@ -19,7 +19,8 @@ export const querriesValidation=(querries:Client)=>{
           "object.regex": "invalid currency!!  accepted format be like 100 USD | 100$ |1000 RWF ",
           "string.pattern.base": "invalid currency!!  accepted format be like 100 USD | 100$ |1000 RWF"
         }),
-        message:Joi.string().min(20).max(300).required()
+        subject:Joi.string().min(20).max(100).required(),
+        message:Joi.string().min(20).max(500).required()
        
     })
 

@@ -18,7 +18,7 @@
             app.use("/api", blogsRoutes)
             app.use('/api/users/auth', authRoute );
             //initSwagger(app)
-            app.use('/docs', swaggerui.serve,swaggerui.setup(swaggerDocument))
+            app.use('/api/docs', swaggerui.serve,swaggerui.setup(swaggerDocument))
             app.get('/api/*', (req:Request, res:Response) => {
                 return res.status(404).json({error:'Page Not Found'});
               });

@@ -65,17 +65,17 @@ describe("Test for authentication & authorization",()=>{
                 password:""
             }
             let r = (Math.random() + 1).toString(36).substring(5);
-
+            userEmail=`user${r}@gmail.com`;
             const response=await supertest(app).post('/api/users/auth/signup')
             .send({
                 "names":`User test`,
-                "email":`user${r}@gmail.com`,
+                "email":userEmail,
                 "password":"test1234h"
             })
             expect(response.statusCode).toBe(200)
             expect(response.body.message).toContain('Signup successful')
             expect(response.body).toHaveProperty('token')
-            userEmail=response.body.user.email as string
+            //userEmail=response.body.user.email as string
             
         })
     
@@ -490,6 +490,7 @@ describe("Test for authentication & authorization",()=>{
                     "email":"emmanuel@gmail.com",
                     "location":"kigali, KG st 12",
                     "budget":"100$",
+                    "subject":"hey Ipsum is simply dummy text ",
                     "message":"Lorem Ipsum is simply dummy text ofthe printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                  })
             expect(response.statusCode).toBe(200)

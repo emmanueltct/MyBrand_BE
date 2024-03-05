@@ -14,6 +14,7 @@ const createQuerries=async(req:Request,res:Response)=>{
         const clientQuery=new Clients({
             client_info:client_info,
             client_budget:req.body.budget,
+            client_subject:req.body.subject,
             client_message:req.body.message 
         })
         const query=await clientQuery.save();
