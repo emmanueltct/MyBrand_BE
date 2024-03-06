@@ -3,6 +3,8 @@ import Blog from "../models/blog"
 import { Request,Response } from "express"
 import multerImage from "../utils/multer";
 import { isValidBlog, isExistTitle } from "../middleware/blog.middleware";
+import blogLike from "../models/blogLike";
+import blogComment from "../models/blogComment";
 const createNewBlog=async (req:any, res:any) => {
 
   
@@ -30,7 +32,19 @@ const createNewBlog=async (req:any, res:any) => {
 
 const getAllBlogs=async (req:Request, res:Response) => {
     const posts = await Blog.find()
-    return res.status(200).json({data:posts})
+     const blogs:any=await Promise.all(
+        posts.map(async (blog) => {
+          const blogLikes = await blogLike.countDocuments({ blogId: blog._id });
+          const blogComments = await blogComment.countDocuments({blogId: blog._id})
+          return {
+            ...blog.toObject(),
+            likes: blogLikes,
+            comments: blogComments,
+          };
+        })
+      );
+    
+     return res.status(200).json({data:blogs})
 }
 
 const singleBlog=async (req:Request, res:Response) => {
@@ -58,21 +72,21 @@ const updateBlog=async (req:any, res:Response) => {
             let validError=''
             
             if (req.body.title ) {
-                if(req.body.title.length<20 || req.body.title.length>50){
+                if(req.body.title.length<20 || req.body.title.length>100){
                     validError="Blog title must be atleast between 20 and 50 character length "+req.body.title.length+ " is provided"
                 }
                 post.title = req.body.title 
             }
 
             if (req.body.blogIntro) {
-                if(req.body.blogIntro.length<50 || req.body.blogIntro.length>100){
-                    validError="Blog introduction must be atleast between 50 and 100 character length "+req.body.blogIntro.length+ " is provided"
+                if(req.body.blogIntro.length<50 || req.body.blogIntro.length>200){
+                    validError="Blog introduction must be atleast between 50 and 200 character length "+req.body.blogIntro.length+ " is provided"
                 }
                 post.blogIntro = req.body.blogIntro
             }
             if (req.body.content ) {
-                if(req.body.content.length<100){
-                    validError="Blog content must be atleast between more than 100 character length and "+req.body.content.length+ " is provided"
+                if(req.body.content.length<300){
+                    validError="Blog content must be atleast between more than 300 character length and "+req.body.content.length+ " is provided"
                 }
                 post.content = req.body.content
             }
@@ -103,5 +117,7 @@ const deleteBlog=async (req:Request, res:Response) => {
         return res.status(500).json({ error: "internal server error" })
     }
 }
+
+
 
 export{createNewBlog,getAllBlogs,singleBlog,updateBlog,deleteBlog}

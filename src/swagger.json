@@ -115,6 +115,7 @@
                 "email":{"type":"string"},
                 "location":{"type": "string"},
                 "budget":{"type": "string","description": "only [Rwf $] are allowed currencies "},
+                "subject":{"type": "string"},
                 "message":{"type":"string"}
             }
         },
