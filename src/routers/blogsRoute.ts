@@ -6,7 +6,7 @@ import multerImage  from "../utils/multer";
 import { isAdmin, isAuthenticated} from "../middleware/user.middlewares"
 
 
-import{ createNewBlog,
+import{createNewBlog,
         getAllBlogs,
         singleBlog,
         updateBlog,
@@ -65,6 +65,8 @@ BlogRouter.delete('/querries/:id',isAdmin,deleteQuerries)
 // user like on specific blog
 BlogRouter.post('/blogs/:id/likes',isAuthenticated, isExistBlog,createNewLike)
 BlogRouter.get('/blogs/:id/likes', isExistBlog,getLikeStatus)
+
+
 
 
 export default BlogRouter
