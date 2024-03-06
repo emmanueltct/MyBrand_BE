@@ -34,8 +34,8 @@ const getAllBlogs=async (req:Request, res:Response) => {
     const posts = await Blog.find()
      const blogs:any=await Promise.all(
         posts.map(async (blog) => {
-          const blogLikes = await blogLike.countDocuments({ blogId: blog._id });
-          const blogComments = await blogComment.countDocuments({blogId: blog._id})
+          const blogLikes = await blogLike.countDocuments({ blog: blog._id });
+          const blogComments = await blogComment.countDocuments({blog: blog._id})
           return {
             ...blog.toObject(),
             likes: blogLikes,
